@@ -101,3 +101,10 @@ example (p w : Nat) (x : BitVec p)
   := by
   pbv_decide 8
   · bv_decide
+
+/-- Adding zero is identity -/
+example {w : Nat} (x : BitVec w) (hw : w ≤ 8)
+  : x + 0 = x
+  := by
+  pbv_decide 8
+  · bv_decide
