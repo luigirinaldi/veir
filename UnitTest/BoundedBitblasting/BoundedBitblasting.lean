@@ -108,3 +108,10 @@ example {w : Nat} (x : BitVec w) (hw : w ≤ 8)
   := by
   pbv_decide 8
   · bv_decide
+
+/-- Multiplying by one is identity -/
+example {w : Nat} (x : BitVec w) (hw : w ≤ 8)
+  : x * 1 = x
+  := by
+  pbv_decide 8
+  · bv_decide
