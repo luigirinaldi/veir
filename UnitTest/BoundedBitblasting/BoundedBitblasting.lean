@@ -115,3 +115,10 @@ example {w : Nat} (x : BitVec w) (hw : w ≤ 8)
   := by
   pbv_decide 8
   · bv_decide
+
+/-- Shifting by one is multiplying by two -/
+example {w : Nat} (x : BitVec w) (hw : w ≤ 8)
+  : x <<< 1 = x * 2
+  := by
+  pbv_decide 8
+  · bv_decide
