@@ -97,11 +97,15 @@ theorem setWidth_ushiftRight {w o : Nat} (h : w ≤ o) (a b : BitVec w) :
   refine setWidth_eq_and_maskOfWidth h ?_
   simp [BitVec.toNat_ushiftRight, Nat.shiftRight_eq_div_pow, Nat.mod_eq_of_lt (self_lt_of_lt h), Nat.div_mod_eq_div a.isLt]
 
--- Missing Theorems:
--- udiv
--- umod
--- zero
+theorem setWidth_udiv {w o : Nat} (h : w ≤ o) (a b : BitVec w) :
+    (a / b).setWidth o = (a.setWidth o / b.setWidth o) &&& maskOfWidth o w := by
+  refine setWidth_eq_and_maskOfWidth h ?_
+  simp [BitVec.toNat_udiv, BitVec.toNat_setWidth, Nat.mod_eq_of_lt (self_lt_of_lt h), Nat.div_mod_eq_div a.isLt]
 
+theorem setWidth_umod {w o : Nat} (h : w ≤ o) (a b : BitVec w) :
+    (a % b).setWidth o = (a.setWidth o % b.setWidth o) &&& maskOfWidth o w := by
+  refine setWidth_eq_and_maskOfWidth h ?_
+  simp [BitVec.toNat_umod, BitVec.toNat_setWidth, Nat.mod_eq_of_lt (self_lt_of_lt h), Nat.mod_mod_eq_mod_of_lt_right a.isLt]
 
 /-- Sign extension fills above the source width `v` with the sign bit,
 and then masks to the target width. -/
